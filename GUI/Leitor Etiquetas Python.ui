@@ -271,6 +271,9 @@
      </property>
     </widget>
     <widget class="QCheckBox" name="ckbPeriodo">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>10</x>

@@ -1,3 +1,16 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""Leitor-e-Digitador-Etiquetas.py: 
+        Desenvolvido para realizar a leitura e digitação de etiquetas."""
+
+__author__ = "Diogo Dias"
+__version__ = "1.0.0"
+__email__ = "diogo@frangoamericano.com"
+__status__ = "Em desenvolvimento"
+
+
+from Relatorio import *
 from PyQt5 import uic,QtWidgets
 from PyQt5.QtWidgets import QApplication, QMessageBox, QShortcut, QFileDialog
 from PyQt5.QtGui import QKeySequence
@@ -74,7 +87,7 @@ class Main_Window(QtWidgets.QMainWindow):
         }
         try:
             arquivo = QFileDialog.getOpenFileName(self, "Escolha um arquivo compativel", "",\
-                (f"{formatos['csv']};;{formatos['xlsx']};;{formatos['txt']};;{formatos['##R']}"))
+                (f"{formatos['xlsx']};;{formatos['csv']};;{formatos['txt']};;{formatos['##R']}"))
             
             if self.verificarArquivo(arquivo[0]):
                 self.lblPathArquivo.setText(arquivo[0])
@@ -89,7 +102,10 @@ class Main_Window(QtWidgets.QMainWindow):
             return_value = msg_box.exec()
 
     def Processar(self):  
-        self.btnFiltrar.setEnabled(True)      
+        self.btnFiltrar.setEnabled(True)
+        
+        listaEtiquetas = Relatorio.extrairReltorioExpedicaoLocal(self.lblPathArquivo.text())
+        
 
         
 if __name__ == "__main__":
