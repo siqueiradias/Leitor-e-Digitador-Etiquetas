@@ -604,7 +604,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QTableWidget" name="tblResultado">
+   <widget class="QTableWidget" name="tbl_resumo">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -615,12 +615,17 @@
     </property>
     <column>
      <property name="text">
-      <string>Produto</string>
+      <string>Etiquetas</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Etiquetas</string>
+      <string>Espelho</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Produto</string>
      </property>
     </column>
    </widget>

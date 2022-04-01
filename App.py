@@ -106,6 +106,22 @@ class Main_Window(QtWidgets.QMainWindow):
         
         listaEtiquetas = Relatorio.extrairReltorioExpedicaoLocal(self.lblPathArquivo.text())
         
+        self.PreencherTabela(listaEtiquetas)
+        
+    def PreencherTabela(self, dados):
+        header = self.tbl_resumo.horizontalHeader()       
+        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
+
+        rowCount = self.tbl_resumo.rowCount()
+        cont = len(dados)
+        while cont > 0:
+            cont -= 1
+            self.tbl_resumo.insertRow(rowCount)
+            for coluna in range(len(dados)):    
+                self.tbl_resumo.setItem(rowCount, coluna, QtWidgets.QTableWidgetItem(str(dados[cont][coluna]))) 
+        
 
         
 if __name__ == "__main__":
