@@ -36,6 +36,10 @@ class Main_Window(QtWidgets.QMainWindow):
         self.btnProcurar.clicked.connect(self.Procurar)
         self.btnProcessar.clicked.connect(self.Processar)
         
+        #LISTAS
+        self._listaEtiquetasGeral = list()
+        self._listaEtiquetasFiltro = list()
+        
         #ENTER
         #self.btnSair.released.connect(exit)
     
@@ -104,9 +108,10 @@ class Main_Window(QtWidgets.QMainWindow):
     def Processar(self):  
         self.btnFiltrar.setEnabled(True)
         
-        listaEtiquetas = Relatorio.extrairReltorioExpedicaoLocal(self.lblPathArquivo.text())
+        self._listaEtiquetasGeral = Relatorio.extrairReltorioExpedicaoLocal(self.lblPathArquivo.text())
         
-        self.PreencherTabela(listaEtiquetas)
+        self.PreencherTabela(self._listaEtiquetasGeral)
+        self.lblTotalEtiquetas.setText(f"{len(self._listaEtiquetasGeral)} Etiquetas Encontradas")
         
     def PreencherTabela(self, dados):
         header = self.tbl_resumo.horizontalHeader()       
@@ -115,12 +120,13 @@ class Main_Window(QtWidgets.QMainWindow):
         header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
 
         rowCount = self.tbl_resumo.rowCount()
-        cont = len(dados)
-        while cont > 0:
-            cont -= 1
+        cont = 0
+        while cont < len(dados):
             self.tbl_resumo.insertRow(rowCount)
-            for coluna in range(len(dados)):    
+            for coluna in range(len(dados[0])):
+                #print(dados[cont][coluna])
                 self.tbl_resumo.setItem(rowCount, coluna, QtWidgets.QTableWidgetItem(str(dados[cont][coluna]))) 
+            cont += 1
         
 
         
