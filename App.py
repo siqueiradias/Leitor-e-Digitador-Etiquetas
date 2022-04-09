@@ -55,7 +55,6 @@ class Main_Window(QtWidgets.QMainWindow):
             self.btn_cadastrar.setEnabled(True)
             self.btn_abrir.setEnabled(True)
             self.btn_exportar.setEnabled(True)
-            
     
     def verificarArquivo(self, arquivo):
         """Verifica se o arquivo existe
